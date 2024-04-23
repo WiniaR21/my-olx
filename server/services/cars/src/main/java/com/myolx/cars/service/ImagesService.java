@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -18,16 +21,36 @@ public class ImagesService {
     private final CarImagesRepository carImagesRepository;
 
     @Transactional
-    public void uploadImage(MultipartFile file) throws IOException {
-        CarImage carImage = CarImage.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .imageData(compressImage(file.getBytes()))
-                .build();
+    public void uploadImage(MultipartFile[] files) throws IOException {
+        List<CarImage> carImages = new ArrayList<>();
 
-        if (carImage != null){
-            carImagesRepository.save(carImage);
+        for(MultipartFile file : files){
+            System.out.println(file.getContentType());
+
+            boolean contentTypeIfFine =
+                    Objects.equals(file.getContentType(), "image/jpeg");
+
+
+            if (contentTypeIfFine){
+
+
+                CarImage carImage = CarImage.builder()
+                        .name(file.getOriginalFilename())
+                        .type(file.getContentType())
+                        .imageData(compressImage(file.getBytes()))
+                        .build();
+                carImages.add(carImage);
+
+
+            }
+            else throw new RuntimeException("Wrong file");
+
         }
+       carImages.forEach(carImage -> {
+           if (carImage != null){
+               carImagesRepository.save(carImage);
+           }
+       });
     }
     @Transactional
     public byte[] downloadImage(String fileName){

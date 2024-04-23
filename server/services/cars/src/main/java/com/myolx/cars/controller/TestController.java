@@ -16,8 +16,8 @@ public class TestController {
     private final ImagesService imagesService;
 
     @PostMapping(path = "/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file) throws IOException {
-        imagesService.uploadImage(file);
+    public ResponseEntity<?> uploadImage(@RequestParam("images") MultipartFile[] files) throws IOException {
+        imagesService.uploadImage(files);
         return ResponseEntity.ok().body(null);
     }
 
