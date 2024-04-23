@@ -12,5 +12,6 @@ public interface IAnnouncementService {
      * @param files - List of cars photos, *only png/jpg.
      * @throws IOException - Throw exception when file is invalid.
      */
-    void addAnnouncement(AddAnnouncementRequest request, MultipartFile[] files) throws IOException;
+    void addCarAnnouncement(AddAnnouncementRequest request, MultipartFile[] files) throws IOException;
+
 }

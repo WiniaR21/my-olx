@@ -35,7 +35,7 @@ public class CarAnnouncement {
         this.phoneNumber = builder.phoneNumber;
         this.carImages = builder.carImages;
         this.title = builder.title;
-        this.description = builder.title;
+        this.description = builder.description;
     }
 
     public static class Builder{
@@ -44,7 +44,7 @@ public class CarAnnouncement {
         private String title;
         private String description;
 
-        public Builder name(String phoneNumber){
+        public Builder phoneNumber(String phoneNumber){
             this.phoneNumber = phoneNumber;
             return this;
         }
