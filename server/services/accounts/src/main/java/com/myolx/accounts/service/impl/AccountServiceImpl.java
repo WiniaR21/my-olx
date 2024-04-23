@@ -3,6 +3,7 @@ package com.myolx.accounts.service.impl;
 import com.myolx.accounts.controller.request.CreateAccountRequest;
 import com.myolx.accounts.controller.response.AccountDetails;
 import com.myolx.accounts.entity.Account;
+import com.myolx.accounts.exception.ResourceNotFoundException;
 import com.myolx.accounts.repository.AccountRepository;
 import com.myolx.accounts.service.IAccountsService;
 import lombok.RequiredArgsConstructor;
@@ -47,8 +48,7 @@ public class AccountServiceImpl implements IAccountsService {
     public void updateAccout(CreateAccountRequest request) {
         Optional<Account> optionalAccount = accountRepository.findByPhoneNumber(request.getPhoneNumber());
         if (optionalAccount.isEmpty()){
-            //TODO Custom exception
-            throw new RuntimeException("Account not found");
+            throw new ResourceNotFoundException("Account", "phoneNumber", request.getPhoneNumber());
         }
         else {
             Account account = optionalAccount.get();
@@ -67,8 +67,7 @@ public class AccountServiceImpl implements IAccountsService {
     public AccountDetails fetchAccountByPhoneNumber(String phoneNumber) {
         Optional<Account> optionalAccount = accountRepository.findByPhoneNumber(phoneNumber);
         if(optionalAccount.isEmpty()){
-            //TODO Custom exception
-            throw new RuntimeException("Account not found");
+            throw new ResourceNotFoundException("Account", "phoneNumber", phoneNumber);
         }
         else {
             Account account = optionalAccount.get();
@@ -89,7 +88,7 @@ public class AccountServiceImpl implements IAccountsService {
     public AccountDetails fetchAccountByEmail(String email) {
         Optional<Account> optionalAccount = accountRepository.findByEmail(email);
         if (optionalAccount.isEmpty()){
-            throw new RuntimeException("Account not found");
+            throw new ResourceNotFoundException("Account", "email", email);
         }
         else {
             Account account = optionalAccount.get();
