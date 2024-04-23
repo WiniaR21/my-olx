@@ -35,10 +35,10 @@ public class GlobalExceptionHandler {
     {
         ErrorResponse errorResponse = new ErrorResponse(
                 webRequest.getDescription(false),
-                HttpStatus.NOT_FOUND,
+                HttpStatus.CONFLICT,
                 exception.getMessage(),
                 LocalDateTime.now()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 }
