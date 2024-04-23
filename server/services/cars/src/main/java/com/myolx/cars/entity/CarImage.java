@@ -1,6 +1,8 @@
 package com.myolx.cars.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "images")
 @Data
 @NoArgsConstructor
-public class CarImages {
+@Builder
+@AllArgsConstructor
+public class CarImage {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long imageId;
@@ -17,5 +21,7 @@ public class CarImages {
 
     private String type;
 
+    @Lob
+    @Column(name = "image_data")
     private byte[] imageData;
 }
