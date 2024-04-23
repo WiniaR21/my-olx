@@ -31,4 +31,35 @@ public class CarAnnouncement {
     @Column(name = "description")
     private String description;
 
+    public CarAnnouncement(Builder builder) {
+        this.phoneNumber = builder.phoneNumber;
+        this.carImages = builder.carImages;
+        this.title = builder.title;
+        this.description = builder.title;
+    }
+
+    public static class Builder{
+        private String phoneNumber;
+        private List<CarImage> carImages;
+        private String title;
+        private String description;
+
+        public Builder name(String phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+        public Builder carImages(List<CarImage> carImages){
+            this.carImages = carImages;
+            return this;
+        }
+        public Builder title(String title){
+            this.title = title;
+            return this;
+        }
+        public Builder description(String description){
+            this.description = description;
+            return this;
+        }
+        public CarAnnouncement build(){return new CarAnnouncement(this);}
+    }
 }

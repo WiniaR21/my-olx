@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "v1/cars")
 @RequiredArgsConstructor
 public class AnnouncementController {
- 
+
 }
