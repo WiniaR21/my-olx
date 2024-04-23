@@ -17,11 +17,15 @@ public class CarImage {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long imageId;
 
-    private String name;
 
+    private String name;
     private String type;
 
     @Lob
     @Column(name = "image_data")
     private byte[] imageData;
+
+    @ManyToOne()
+    @JoinColumn(name = "announcement_id")
+    private CarAnnouncement carAnnouncement;
 }

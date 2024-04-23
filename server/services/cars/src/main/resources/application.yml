@@ -17,7 +17,7 @@ spring:
       ddl-auto: create-drop
   servlet:
     multipart:
-      max-file-size: 5MB
+      max-file-size: 15MB
 
 #Actuator
 management:

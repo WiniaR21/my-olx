@@ -1,10 +1,10 @@
 package com.myolx.cars.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,5 +19,9 @@ public class CarAnnouncement {
     @Column(name = "belongs_to")
     private String belongsTo;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carAnnouncement")
+    private List<CarImage> carImages;
+
+    private String description;
 
 }
