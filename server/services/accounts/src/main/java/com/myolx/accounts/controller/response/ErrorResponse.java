@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
-/**
- * @author WiniaR21
- */
+
 @Data @AllArgsConstructor
 public class ErrorResponse {
     private String apiPath;

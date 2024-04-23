@@ -44,6 +44,7 @@ public class AccountsController {
                 .ok()
                 .body(accountsService.fetchAccountByPhoneNumber(phoneNumber));
     }
+
     @GetMapping(path = "/fetch-by-email")
     public ResponseEntity<AccountDetails> fetchAccountByEmail(
             @Email
