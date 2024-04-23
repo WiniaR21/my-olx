@@ -13,6 +13,11 @@ public class CarAnnouncement {
     @Id
     private Long carAnnouncementId;
 
+    /**
+     * PhoneNumber of account
+     */
     @Column(name = "belongs_to")
     private String belongsTo;
+
+
 }
