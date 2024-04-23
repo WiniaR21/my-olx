@@ -3,6 +3,7 @@ package com.myolx.accounts.service.impl;
 import com.myolx.accounts.controller.request.CreateAccountRequest;
 import com.myolx.accounts.controller.response.AccountDetails;
 import com.myolx.accounts.entity.Account;
+import com.myolx.accounts.exception.AccountAlreadyExistException;
 import com.myolx.accounts.exception.ResourceNotFoundException;
 import com.myolx.accounts.repository.AccountRepository;
 import com.myolx.accounts.service.IAccountsService;
@@ -25,8 +26,7 @@ public class AccountServiceImpl implements IAccountsService {
     public void createAccount(CreateAccountRequest request) {
         Optional<Account> optionalAccount = accountRepository.findByPhoneNumber(request.getPhoneNumber());
         if (optionalAccount.isPresent()){
-            //TODO Custom exception
-            throw new RuntimeException("Account already exist");
+            throw new AccountAlreadyExistException(request.getPhoneNumber());
         }
         else {
             Account account = new Account(

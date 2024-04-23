@@ -26,4 +26,19 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(AccountAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse> handleAccountAlreadyExistException(
+            AccountAlreadyExistException exception,
+            WebRequest webRequest
+    )
+    {
+        ErrorResponse errorResponse = new ErrorResponse(
+                webRequest.getDescription(false),
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }
