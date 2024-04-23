@@ -8,20 +8,27 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "car_announcement")
 @NoArgsConstructor
 public class CarAnnouncement {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long carAnnouncementId;
 
     /**
      * PhoneNumber of account
      */
-    @Column(name = "belongs_to")
-    private String belongsTo;
+    @Column(name = "phone_number", nullable = false, updatable = false)
+    private String phoneNumber;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carAnnouncement")
     private List<CarImage> carImages;
 
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "description")
     private String description;
 
 }

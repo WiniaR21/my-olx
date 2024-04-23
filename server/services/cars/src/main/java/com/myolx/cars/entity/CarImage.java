@@ -17,7 +17,6 @@ public class CarImage {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long imageId;
 
-
     private String name;
     private String type;
 
